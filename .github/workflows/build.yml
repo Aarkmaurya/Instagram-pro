@@ -1,47 +1,24 @@
-name: Build Instagram V4 APK
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
+name: Build V5
+on: push
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up JDK 17
+      - name: JDK 17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
-      - name: Install Dependencies
+      - name: Build
         run: |
           sudo apt update
-          sudo apt install -y git zip unzip autoconf automake libtool pkg-config zlib1g-dev \
-          libncurses5-dev libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev \
-          libxml2-dev libxslt1-dev gettext m4 python3-pip python3-setuptools \
-          libsqlite3-dev sqlite3
-
-      - name: Install Buildozer & Cython
-        run: |
-          python3 -m pip install --user --upgrade "buildozer==1.5.0" "cython<3.0" sh
-
-      - name: Build APK with Auto-License
-        run: |
+          sudo apt install -y git zip unzip autoconf automake libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev libxml2-dev libxslt1-dev gettext m4 python3-pip python3-setuptools libsqlite3-dev sqlite3
+          python3 -m pip install --user --upgrade buildozer "cython<3.0" sh
           export PATH=$PATH:$HOME/.local/bin
-          # 🚩 Force Accept All Licenses
-          mkdir -p ~/.android && touch ~/.android/repositories.cfg
-          # Ye command saare licenses ko 'yes' kar degi
-          yes | buildozer android debug || true 
-          # Final build command
-          buildozer -v android debug
-        env:
-          APP_ANDROID_ACCEPT_SDK_LICENSE: 1
-
-      - name: Upload APK
+          yes | buildozer -v android debug
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
-          name: Instagram-V4-Test-APK
+          name: Instagram-V5-CrashFree
           path: bin/*.apk
