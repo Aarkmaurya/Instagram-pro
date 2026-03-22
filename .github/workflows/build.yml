@@ -1,5 +1,6 @@
 name: Build Ghost APK
 on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,10 +12,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Critical Dependencies
+      - name: Install System Dependencies
         run: |
           sudo apt update
-          # Autotools aur missing libraries ka combo
           sudo apt install -y git zip unzip autoconf automake libtool m4 pkg-config \
           zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev \
           build-essential python3-dev libltdl-dev
@@ -26,7 +26,9 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # Buildozer ko batana padega ki hum automated environment mein hain
+          # Auto-accept all Android SDK licenses
+          export APP_ANDROID_ACCEPT_SDK_LICENSE=1
+          export BUILDOZER_ALLOW_ORG_NAME_START=1
           yes | buildozer android debug
           
       - name: Upload APK Artifact
