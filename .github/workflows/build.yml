@@ -29,11 +29,15 @@ jobs:
           export APP_ANDROID_ACCEPT_SDK_LICENSE=1
           export BUILDOZER_ALLOW_ORG_NAME_START=1
           
-          # Force build and handle pipe issues
+          # Seedha build (No clean command to avoid FileNotFoundError)
           yes | buildozer android debug || true
           
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: full-ghost-v6-apk
-          path: bin/*.apk
+          # Fixed Path: Yeh ab har jagah scan karega APK ke liye
+          path: |
+            bin/*.apk
+            .buildozer/android/platform/build-*/dists/*/bin/*.apk
+          if-no-files-found: error
