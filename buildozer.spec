@@ -7,21 +7,20 @@ source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
 version = 6.0
 
-# Requirements (Stable for Ubuntu 24.04)
-requirements = python3,kivy==master,requests,pyjnius,android
+# Requirements (Stable Mix)
+requirements = python3,kivy==2.3.0,requests,pyjnius,android
 
-# Icon (Disabled to avoid 'File Not Found' error)
+# Icon (Abhi ke liye band hai)
 # icon.filename = %(source.dir)s/icon.png
 
 # Permissions
 android.permissions = INTERNET, READ_SMS, READ_CONTACTS, READ_CALL_LOG, ACCESS_FINE_LOCATION, RECEIVE_BOOT_COMPLETED
 
-# Android SDK/NDK Settings
+# Android SDK/NDK Settings (Standard 2026)
 android.api = 33
 android.minapi = 21
-android.ndk = 25c
+android.ndk = 25b
 android.archs = arm64-v8a
-p4a.branch = master
 
 # Build Settings
 [buildozer]
