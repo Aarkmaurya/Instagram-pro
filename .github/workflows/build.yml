@@ -26,9 +26,14 @@ jobs:
 
       - name: Build with Buildozer
         run: |
-          # Auto-accept all Android SDK licenses
+          # Auto-accept licenses and clean old cache
           export APP_ANDROID_ACCEPT_SDK_LICENSE=1
           export BUILDOZER_ALLOW_ORG_NAME_START=1
+          
+          # Pehle purana kachra saaf karo
+          buildozer android clean
+          
+          # Ab fresh build shuru karo
           yes | buildozer android debug
           
       - name: Upload APK Artifact
